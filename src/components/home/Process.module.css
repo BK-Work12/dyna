@@ -14,9 +14,9 @@
 .stepNum { left: 0; top: 0; font-size: 11px; color: #fe6b1e; line-height: normal; }
 .stepTitle { left: 0; top: 20px; font-size: 34px; letter-spacing: -0.51px; color: #f5f5f2; line-height: normal; }
 .stepBody { left: 0; top: 68px; width: 440px; white-space: normal; font-size: 15px; line-height: 1.4; color: #9a9a95; }
-.bar { left: calc(610px + var(--dx, 0px) / 2); top: 4px; width: 3px; height: 104px; border-radius: 2px; background: rgba(245, 245, 242, 0.9); }
+.bar { left: calc(560px + var(--dx, 0px) / 2); top: 4px; width: 3px; height: 104px; border-radius: 2px; background: rgba(245, 245, 242, 0.9); }
 .progress {
-  position: absolute; left: calc(690px + var(--dx, 0px) / 2); top: 304px; width: 3px; height: 104px; border-radius: 2px; background: #fe6b1e;
+  position: absolute; left: calc(640px + var(--dx, 0px) / 2); top: 304px; width: 3px; height: 104px; border-radius: 2px; background: #fe6b1e;
 }
 
 .glow { position: absolute; left: calc(670px + var(--dx, 0px)); top: 170px; width: 820px; height: 700px; display: block; max-width: none; }
