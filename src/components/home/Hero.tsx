@@ -4,7 +4,7 @@ import Link from "next/link";
 import ButtonPrimary from "../ButtonPrimary";
 import { EASE, playTracks, staggerIn, type Bezier, type Kf, type Tracks } from "@/lib/figmaMotion";
 import { PARTICLES } from "./heroParticles";
-import { fitWidth } from "@/lib/fitWidth";
+import { fitWidth, MOBILE_MAX } from "@/lib/fitWidth";
 import s from "./Hero.module.css";
 
 /* ------------------------------------------------------------------ *
@@ -202,6 +202,18 @@ export default function Hero() {
     // crop the canvas height to the window (visual layers stay vertically centred) so the whole hero
     // fits on one screen without squeezing or widening the composition.
     const fit = () => {
+      if (document.documentElement.clientWidth <= MOBILE_MAX) {
+        // mobile: CSS owns the layout; only the decorative visual is scaled (see .stage in Hero.module.css)
+        el.style.width = "";
+        el.style.maxWidth = "";
+        el.style.height = "";
+        el.style.removeProperty("--ox");
+        el.style.removeProperty("--oy");
+        (el.style as CSSStyleDeclaration & { zoom: string }).zoom = "";
+        el.style.setProperty("--ms", String(document.documentElement.clientWidth / 800));
+        return;
+      }
+      el.style.removeProperty("--ms");
       const k = Math.min(1, document.documentElement.clientWidth / 1440);
       const H = Math.min(900, Math.max(620, window.innerHeight / k));
       const w = document.documentElement.clientWidth;
@@ -274,6 +286,8 @@ export default function Hero() {
 
   return (
     <section ref={root} className={`${s.hero} frame`} id="top">
+      <div className={s.stage}>
+      <div className={s.canvas}>
       {/* Core Glow */}
       <div className={s.glow} data-m="glow" aria-hidden>
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -344,6 +358,9 @@ export default function Hero() {
             </div>
           </div>
         ))}
+      </div>
+
+      </div>
       </div>
 
       <div className={s.content}>

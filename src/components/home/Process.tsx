@@ -56,6 +56,7 @@ export default function Process() {
     if (!run) return;
     const nodes = Object.keys(processTracks).map((id) => [id, run.querySelector<HTMLElement>(`[data-fig="${id}"]`)] as const);
     let raf = 0;
+    const mq = window.matchMedia("(max-width: 900px)"); // mobile: stacked, in-flow layout (no pinned scrub)
     const fit = () => {
       // fit the window height by scaling; spend spare width by spreading the layout to the section edges
       const cw = run.clientWidth;
@@ -67,6 +68,7 @@ export default function Process() {
     };
     const apply = () => {
       raf = 0;
+      if (mq.matches) return;
       fit();
       const y = -run.getBoundingClientRect().top;
       const t = Math.min(TIMELINE, Math.max(0, y / PX_PER_SECOND));
@@ -83,9 +85,11 @@ export default function Process() {
       if (!raf) raf = requestAnimationFrame(apply);
     };
     apply();
+    mq.addEventListener("change", onScroll);
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
+      mq.removeEventListener("change", onScroll);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);

@@ -180,3 +180,26 @@
 @media (scripting: none) {
   .stage [data-m] { opacity: 1; }
 }
+
+/* ---------- Mobile (<= 900px): stacked flow layout ---------- */
+@media (max-width: 900px) {
+  .stage { height: auto; display: flex; flex-direction: column; padding-top: 72px; }
+  .glow { height: 520px; }
+  .breadcrumb { position: relative; top: 0; padding: 16px 20px; gap: 12px; }
+  .back { min-height: 44px; }
+  .title { position: relative; left: 0; top: 0; transform: none; width: 100%; padding: 24px 20px 32px; gap: 16px; }
+  .title h1 { font-size: clamp(34px, 9.5vw, 52px); line-height: 1.1; letter-spacing: -1px; white-space: normal; text-align: center; }
+  .title p { width: 100%; font-size: 17px; line-height: 1.55; }
+  .hero { position: relative; left: 0; top: 0; width: calc(100% - 40px); height: auto; aspect-ratio: 1280 / 711; margin: 0 20px 40px; border-radius: 14px; }
+  .hero img { border-radius: 14px; }
+  .band { position: relative; top: 0; height: auto; overflow: visible; padding: 56px 20px; }
+  .bandLight, .bandDark { top: 0; }
+  .bandRow { position: static; flex-direction: column; gap: 20px; }
+  .bandLight .bandRow, .bandDark .bandRow { left: auto; }
+  .heading { font-size: clamp(30px, 8vw, 40px); line-height: 1.12; text-align: left; white-space: normal; }
+  .body { width: 100%; font-size: 17px; line-height: 1.6; }
+  /* the dark band has body before heading in the DOM: show the heading first on mobile */
+  .bandDark .bandRow { flex-direction: column-reverse; }
+  .icon { display: none; }
+  .footerWrap { margin-top: 0; }
+}

@@ -121,6 +121,7 @@ export default function Reviews() {
         <span className={s.stars}>★★★★★</span>
         {"   4.9 / 5 from 38 client reviews"}
       </p>
+      <div className={s.fan}>
       {reviews.map((r) =>
         r.box ? (
           <div
@@ -152,6 +153,7 @@ export default function Reviews() {
           </div>
         ),
       )}
+      </div>
       <div className={s.hoverArea} onMouseEnter={() => setSpread(true)} onMouseLeave={() => setSpread(false)} />
     </section>
   );

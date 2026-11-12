@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import s from "./Manifesto.module.css";
+import { MOBILE_MAX } from "@/lib/fitWidth";
 import { staggerIn, type StaggerProps } from "@/lib/figmaMotion";
 
 /**
@@ -85,6 +86,13 @@ export default function Manifesto() {
       raf = 0;
       const r = root.getBoundingClientRect();
       const vh = window.innerHeight;
+      if (document.documentElement.clientWidth <= MOBILE_MAX) {
+        // mobile: in-flow section — reveal while it travels from 90% down to ~40% of the viewport
+        const pm = Math.min(1, Math.max(0, (vh * 0.9 - r.top) / (vh * 0.5)));
+        const tm = pm * TL * 1000;
+        anims.forEach((a) => (a.currentTime = tm));
+        return;
+      }
       // start as soon as the section rises into view (top edge at 85% of the viewport), finish before it unpins
       const lead = vh * 0.85;
       const span = lead + Math.max(0, root.offsetHeight - vh);

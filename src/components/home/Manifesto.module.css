@@ -11,3 +11,14 @@
 /* hidden until the text-stagger starts (Figma opacity 0 -> 1); removed by script */
 .lines p.pre { opacity: 0; }
 .sub { top: 228px; width: 780px; white-space: normal !important; font-size: 24px; line-height: 36px; color: #0a0a0a; }
+
+@media (max-width: 900px) {
+  .section { height: auto; }
+  .stage { position: relative; height: auto; min-height: 0; overflow: visible; padding: 88px 20px 96px; }
+  .lines { position: static; width: auto; height: auto; transform: none; display: flex; flex-direction: column; align-items: center; }
+  .lines p { position: static; left: auto; transform: none; white-space: normal; }
+  .l1, .l2 { font-size: clamp(32px, 9.4vw, 54px); line-height: 1.08; letter-spacing: -0.03em; }
+  .l1 { margin-top: 20px; }
+  .l2 { margin-top: 4px; }
+  .sub { width: auto; max-width: 520px; margin-top: 28px; font-size: 18px; line-height: 1.55; }
+}

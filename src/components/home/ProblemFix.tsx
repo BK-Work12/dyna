@@ -4,6 +4,7 @@ import s from "./ProblemFix.module.css";
 import { playTracks, type Tracks, type TrackName } from "@/lib/figmaMotion";
 import { MOTION } from "./problemFixMotion";
 import StoryStage from "./StoryStage";
+import { MOBILE_MAX } from "@/lib/fitWidth";
 
 /** One WAAPI animation per property group so each keyframe keeps its own Figma easing curve. */
 const GROUPS: TrackName[][] = [["OPACITY"], ["TRANSLATION_X", "TRANSLATION_Y"], ["ROTATION"], ["SCALE_XY", "SCALE_X", "SCALE_Y"], ["WIDTH"], ["HEIGHT"]];
@@ -40,6 +41,13 @@ export default function ProblemFix() {
     let last: boolean | null = null;
     const update = () => {
       raf = 0;
+      if (document.documentElement.clientWidth <= MOBILE_MAX) {
+        // mobile: in-flow layout, no pinned scrub; the user flips Today / With DYNA with the toggle
+        el.style.removeProperty("--k");
+        el.style.removeProperty("--w");
+        last = null;
+        return;
+      }
       const vh = window.innerHeight;
       // fit the window height by scaling, and spend spare width by widening the layout (no empty side bands)
       const cw = el.clientWidth;
@@ -148,7 +156,7 @@ export default function ProblemFix() {
         <div className={s.proof}>
           {/* Card 1 */}
           <article className={s.card}>
-            <div className={s.visual}>
+            <div className={s.visual}><div className={s.vin}>
               <div className={s.mapPanel} />
               <span className={s.t13} style={{ left: 188, top: 32 }}>Process map</span>
               <span data-m="count" className={s.t11} style={{ left: 303, top: 34 }}>4 bottlenecks</span>
@@ -168,13 +176,13 @@ export default function ProblemFix() {
                   </div>
                 </div>
               ))}
-            </div>
+            </div></div>
             <Text a="Guessing what to build" b="→ We map how you work" c="We sit with your team, follow the calls, spreadsheets and handovers, and find where time really goes." />
           </article>
 
           {/* Card 2 */}
           <article className={s.card}>
-            <div className={s.visual}>
+            <div className={s.visual}><div className={s.vin}>
               <span className={s.old} style={{ left: 32, top: 40 }}>12 months</span>
               <i data-m="strike" style={{ position: "absolute", left: 32, top: 59, width: 141, height: 2, background: "#fe6b1e" }} />
               <span data-m="newtime" className={s.new} style={{ left: 32, top: 84 }}>6 weeks</span>
@@ -182,13 +190,13 @@ export default function ProblemFix() {
               <i data-m="pfill" style={{ position: "absolute", left: 32, top: 160, width: 346, height: 6, borderRadius: 3, background: "#fe6b1e" }} />
               <span data-m="sent" className={s.sent}><span>✓</span><span>v1.0 shipped</span></span>
               <span data-m="plabel" className={s.t11} style={{ left: 32, top: 172 }}>Discovery → sprints → first release</span>
-            </div>
+            </div></div>
             <Text a="Off-the-shelf tools you work around" b="→ Software built around you" c="Custom software, products and automation, designed for how your business runs." />
           </article>
 
           {/* Card 3 */}
           <article className={s.card}>
-            <div className={s.visual}>
+            <div className={s.visual}><div className={s.vin}>
               <i style={{ position: "absolute", left: 44, top: 91, width: 322, height: 2, background: "rgba(28,28,28,0.12)" }} />
               <i data-m="rail" style={{ position: "absolute", left: 44, top: 91, width: 2, height: 2, background: "#fe6b1e" }} />
               <i data-m="live" style={{ position: "absolute", left: 32, top: 35, width: 6, height: 6, borderRadius: 3, background: "#fe6b1e" }} />
@@ -205,7 +213,7 @@ export default function ProblemFix() {
                   <span data-m={`meta${i}`} className={s.stepW} style={{ left: st.cx }}>{st.w}</span>
                 </div>
               ))}
-            </div>
+            </div></div>
             <Text a="Launch, hand over, disappear" b="→ We stay to make it better" c="After launch we measure, support and keep shipping improvements, as a long-term partner." />
           </article>
         </div>

@@ -102,3 +102,16 @@
   line-height: 28px;
   color: #8c8c86;
 }
+
+@media (max-width: 900px) {
+  .section { padding: 48px 20px 72px; gap: 36px; }
+  .intro { width: 100%; gap: 14px; }
+  .intro h2 { font-size: clamp(30px, 8.5vw, 40px); line-height: 1.12; letter-spacing: -0.03em; }
+  .intro p { font-size: 18px; line-height: 1.5; }
+  .grid { width: 100%; height: auto; }
+  .steps { gap: 16px; }
+  .step { height: auto; min-height: 0; justify-content: flex-start; gap: 12px; padding: 28px 22px; border-radius: 16px; }
+  .big { left: auto !important; right: 12px; top: 6px; font-size: 112px; letter-spacing: -6px; }
+  .title { font-size: clamp(26px, 7vw, 32px); line-height: 1.15; white-space: normal; }
+  .body { width: 100%; font-size: 16px; line-height: 1.55; }
+}

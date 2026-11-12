@@ -3,8 +3,20 @@
  * uniformly (CSS zoom) so the whole composition stays visible instead of being cut off at the right.
  * At >= 1440px nothing changes.
  */
+/** At or below this viewport width pages switch from the scaled 1440 canvas to real responsive (mobile) layouts. */
+export const MOBILE_MAX = 900;
+
 export function fitWidth(el: HTMLElement, designWidth = 1440): () => void {
   const apply = () => {
+    if (document.documentElement.clientWidth <= MOBILE_MAX) {
+      // mobile: no scaled canvas — CSS media queries (max-width: 900px) own the layout
+      el.style.width = "";
+      el.style.maxWidth = "";
+      el.style.left = "";
+      el.style.right = "";
+      (el.style as CSSStyleDeclaration & { zoom: string }).zoom = "";
+      return;
+    }
     const k = Math.min(1, document.documentElement.clientWidth / designWidth);
     el.style.width = `${designWidth}px`;
     el.style.maxWidth = "none";

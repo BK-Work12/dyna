@@ -25,3 +25,17 @@
 .fade { position: absolute; top: 0; width: 220px; height: 240px; pointer-events: none; }
 .fadeL { left: 0; background: linear-gradient(90deg, #0a0a0a, rgba(10, 10, 10, 0)); }
 .fadeR { right: 0; background: linear-gradient(90deg, rgba(10, 10, 10, 0), #0a0a0a); }
+
+@media (max-width: 900px) {
+  .section { height: auto; padding: 56px 20px 0; }
+  .eyebrow, .title, .metrics { position: static; }
+  .title { width: auto; max-width: 560px; margin-top: 12px; font-size: clamp(30px, 8.6vw, 44px); letter-spacing: -0.02em; }
+  .metrics { margin-top: 28px; justify-content: space-between; }
+  .metric { white-space: normal; padding: 0 10px !important; flex: 1 1 0; min-width: 0; }
+  .metric:first-child { padding-left: 0 !important; }
+  .metric:last-child { padding-right: 0 !important; }
+  .num { font-size: clamp(32px, 9vw, 52px); line-height: 1.2; letter-spacing: -0.03em; }
+  .cap { font-size: 13px; }
+  .marquee { position: relative; top: auto; left: auto; width: calc(100% + 40px); margin: 36px -20px 0; height: 240px; }
+  .fade { width: 56px; }
+}

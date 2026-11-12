@@ -41,3 +41,8 @@
 
 .progress { position: absolute; right: 20px; top: 618px; width: 220px; height: 8px; }
 .progress i { position: absolute; left: 0; top: 3px; height: 1px; }
+
+@media (max-width: 900px) {
+  .story { position: relative; left: auto; top: auto; width: 1092px; height: 572px; zoom: 0.6; margin: 0; flex: none; }
+  .progress { display: none; }
+}

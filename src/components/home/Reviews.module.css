@@ -131,3 +131,26 @@
   font-size: 13px;
   color: rgba(245, 245, 242, 0.55);
 }
+
+/* wrapper for the card fan: transparent to layout on desktop */
+.fan { display: contents; }
+
+/* ---------- Mobile (<= 900px): heading + swipeable card strip (no fan / hover spread) ---------- */
+@media (max-width: 900px) {
+  .section { height: auto; padding: 64px 0 56px; }
+  .heading { position: static; left: auto; top: auto; padding: 0 20px; font-size: clamp(32px, 9vw, 44px); letter-spacing: -1px; line-height: 1.08; white-space: normal; }
+  .rating { position: static; left: auto; top: auto; padding: 0 20px; margin-top: 14px; white-space: normal; }
+  .fan {
+    display: flex; gap: 14px; margin-top: 32px; padding: 6px 20px 24px; overflow-x: auto;
+    scroll-snap-type: x mandatory; scroll-padding: 0 20px; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  }
+  .fan::-webkit-scrollbar { display: none; }
+  .front, .fanBox, .spread .front, .spread .fanBox {
+    position: static; flex: none; display: block; width: min(84vw, 340px) !important; height: auto !important;
+    transform: none !important; transition: none; scroll-snap-align: center;
+  }
+  .tilt, .spread .tilt { transform: none !important; transition: none; }
+  .card { width: 100%; padding: 28px; height: 100%; }
+  .who { white-space: normal; }
+  .hoverArea { display: none; }
+}

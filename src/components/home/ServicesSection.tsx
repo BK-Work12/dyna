@@ -43,8 +43,13 @@ export default function ServicesSection() {
     if (!el) return;
     let raf = 0;
     let last = -1;
+    const mq = window.matchMedia("(max-width: 900px)"); // mobile: no pinned runway; tabs are tap-to-switch
     const update = () => {
       raf = 0;
+      if (mq.matches) {
+        last = -1;
+        return;
+      }
       const vh = window.innerHeight;
       // Fit the window height by scaling; spend any spare width by widening the layout instead of leaving gaps.
       const cw = el.clientWidth;
@@ -63,9 +68,11 @@ export default function ServicesSection() {
       if (!raf) raf = requestAnimationFrame(update);
     };
     update();
+    mq.addEventListener("change", onScroll);
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
+      mq.removeEventListener("change", onScroll);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);

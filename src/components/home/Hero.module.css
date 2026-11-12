@@ -75,3 +75,37 @@
 .glow, .layer, .funnel, .particles, .chips { margin-top: var(--oy, 0px); margin-left: var(--ox, 0px); }
 /* Wide screens: hero spans the full window; the 1440 canvas is centred inside it */
 .content, .scroll { margin-left: var(--ox, 0px); }
+
+/* ---- Stage wrappers: transparent on desktop (children position against the hero as before) ---- */
+.stage, .canvas { display: contents; }
+
+/* ---- Mobile / small tablet (<= 900px): stacked layout, decorative funnel scaled into the width ---- */
+@media (max-width: 900px) {
+  .hero { height: auto; width: 100%; max-width: none; display: flex; flex-direction: column; }
+  .content {
+    position: relative; left: auto; top: auto; width: auto; margin: 0; order: 1;
+    padding: 112px 20px 8px; gap: 20px; overflow: visible;
+  }
+  .h1 { font-size: clamp(38px, 11vw, 56px); line-height: 1.04; letter-spacing: -0.035em; white-space: normal; }
+  .copy { width: auto; max-width: 520px; font-size: 17px; line-height: 1.5; }
+  .spacer { display: none; }
+  .ctas { flex-wrap: wrap; width: 100%; gap: 12px; }
+  .ctas > * { flex: 1 1 170px; justify-content: center; min-height: 52px; box-sizing: border-box; }
+  .secondary { justify-content: center; }
+  .secondary::after { display: none; }
+  .scroll { display: none; }
+
+  /* The 1440x900 composition is shown as a cropped, scaled window on its right half (funnel + core). */
+  .stage {
+    display: block; position: relative; order: 2; width: 100%; overflow: hidden; pointer-events: none;
+    height: calc(700px * var(--ms, 0.49));
+    margin-top: 8px;
+  }
+  .canvas {
+    display: block; position: absolute; left: 0; top: 0; width: 1440px; height: 900px;
+    transform-origin: 0 0;
+    transform: translate(calc(-700px * var(--ms, 0.49)), calc(-100px * var(--ms, 0.49))) scale(var(--ms, 0.49));
+  }
+  .glow, .layer, .funnel, .particles, .chips { margin: 0; }
+  .chips { display: none; }
+}

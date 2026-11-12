@@ -53,3 +53,21 @@
 .track { left: 204px; height: 6px; border-radius: 3px; background: #d6d6d1; }
 .fill { left: 204px; height: 6px; border-radius: 3px; background: #0a0a0a; }
 .pct { font-size: 12px; line-height: normal; }
+
+/* ---------- Mobile (<= 900px): stacked, in-flow layout; no pinned scroll scrub ---------- */
+@media (max-width: 900px) {
+  .runway { height: auto; }
+  .sticky { position: static; height: auto; overflow: visible; padding: 64px 20px; }
+  .canvas { position: static; width: auto; height: auto; transform: none; display: flex; flex-direction: column; gap: 16px; }
+  .a { position: static; white-space: normal; }
+  .h2 { font-size: clamp(32px, 9vw, 44px); line-height: 1.08; letter-spacing: -1px; }
+  .lead { width: auto; font-size: 16px; line-height: 1.5; margin-bottom: 12px; }
+  .step {
+    position: relative; left: auto; top: auto !important; width: auto; height: auto; display: block;
+    padding: 22px 22px 24px; border: 1px solid rgba(245, 245, 242, 0.12); border-radius: 16px; background: rgba(245, 245, 242, 0.03);
+  }
+  .stepNum { display: block; margin-bottom: 10px; }
+  .stepTitle { display: block; font-size: clamp(22px, 6.2vw, 28px); letter-spacing: -0.4px; margin-bottom: 10px; }
+  .stepBody { display: block; width: auto; font-size: 15px; line-height: 1.5; }
+  .bar, .progress, .glow, .stack { display: none; }
+}

@@ -33,3 +33,24 @@
 .itemOpen .answer { opacity: 1; }
 
 .bottomRule { display: block; flex: none; width: 760px; height: 1px; background: var(--grey-700); }
+
+/* ---------- Mobile (<= 900px): full-width accordion, 44px+ tap rows ---------- */
+@media (max-width: 900px) {
+  .section { height: auto; padding: 64px 20px; }
+  .title { position: static; font-size: clamp(32px, 9vw, 40px); white-space: normal; }
+  .lead { position: static; width: auto; margin-top: 12px; }
+  .still { position: static; margin-top: 24px; white-space: normal; }
+  .cta { position: static; margin-top: 10px; }
+  .list { position: static; width: auto; margin-top: 36px; }
+
+  .item { width: 100%; height: auto; overflow: visible; transition: none; }
+  .itemOpen { height: auto; }
+  .hairline { width: 100%; }
+  .head { position: relative; inset: auto; height: auto; min-height: 64px; display: flex; align-items: center; gap: 14px; padding: 16px 0; }
+  .index { position: static; flex: none; width: 24px; }
+  .question { position: static; flex: 1; width: auto; font-size: 18px; line-height: 1.35; letter-spacing: -0.1px; }
+  .icon { position: static; flex: none; }
+  .answer { position: static; display: none; width: auto; padding: 0 34px 20px 38px; font-size: 15px; opacity: 1; transition: none; }
+  .itemOpen .answer { display: block; }
+  .bottomRule { width: 100%; }
+}
