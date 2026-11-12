@@ -1,0 +1,55 @@
+/* Scroll runway: 900px design height + 4 bands of 225px */
+.runway { position: relative; height: calc(100vh + 900px); background: #0a0a0a; }
+.sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; background: #0a0a0a; }
+/* 1440x900 design canvas, centred and scaled to always fit the visible window */
+.canvas { position: absolute; left: 50%; top: 50%; width: var(--w, 1440px); height: 900px; transform: translate(-50%, -50%) scale(var(--k, 1)); transform-origin: center; }
+.a { position: absolute; white-space: nowrap; }
+.mono { font-family: var(--font-geist-mono), monospace; }
+
+.h2 { left: 80px; top: 96px; font-size: 52px; line-height: 1.1; letter-spacing: -1.3px; color: #f5f5f2; }
+.h2 p { margin: 0; }
+.lead { left: calc(960px + var(--dx, 0px)); top: 108px; width: 360px; white-space: normal; font-size: 18px; line-height: 1.45; color: rgba(245, 245, 242, 0.85); }
+
+.step { position: absolute; left: 80px; width: 640px; height: 120px; }
+.stepNum { left: 0; top: 0; font-size: 11px; color: #fe6b1e; line-height: normal; }
+.stepTitle { left: 0; top: 20px; font-size: 34px; letter-spacing: -0.51px; color: #f5f5f2; line-height: normal; }
+.stepBody { left: 0; top: 68px; width: 440px; white-space: normal; font-size: 15px; line-height: 1.4; color: #9a9a95; }
+.bar { left: calc(610px + var(--dx, 0px) / 2); top: 4px; width: 3px; height: 104px; border-radius: 2px; background: rgba(245, 245, 242, 0.9); }
+.progress {
+  position: absolute; left: calc(690px + var(--dx, 0px) / 2); top: 304px; width: 3px; height: 104px; border-radius: 2px; background: #fe6b1e;
+}
+
+.glow { position: absolute; left: calc(670px + var(--dx, 0px)); top: 170px; width: 820px; height: 700px; display: block; max-width: none; }
+/* page cards ~15% larger than the Figma size; shifted left so the enlarged stack (and its rotated sheets) stay inside the right margin */
+.stack { position: absolute; left: calc(780px + var(--dx, 0px)); top: 268px; width: 520px; height: 484px; transform: scale(1.15); transform-origin: center; }
+
+.back, .page {
+  position: absolute; width: 520px; height: 484px; border-radius: 18px; overflow: hidden;
+  will-change: translate, rotate, scale, opacity;
+}
+.back { background: #e8e7e3; border: 1px solid rgba(10, 10, 10, 0.08); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35); }
+.page { background: #fff; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22); }
+.shade {
+  position: absolute; left: 0; top: 0; width: 520px; height: 1000px; opacity: 0.2;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.6));
+  pointer-events: none;
+}
+
+/* page contents */
+.eyebrow { left: 48px; top: 40px; font-size: 12px; color: #fe6b1e; white-space: pre; line-height: normal; }
+.pTitle { left: 48px; top: 64px; font-weight: 500; font-size: 26px; letter-spacing: -0.39px; color: #0a0a0a; line-height: normal; }
+.rule { left: 48px; top: 114px; width: 424px; height: 1px; background: rgba(10, 10, 10, 0.1); }
+.pBody { left: 48px; top: 136px; width: 424px; white-space: normal; font-size: 15px; line-height: 1.5; color: #6e6e6a; }
+.rowRule { left: 48px; width: 424px; height: 1px; background: #d6d6d1; }
+.label { left: 48px; font-size: 11px; letter-spacing: 0.66px; color: #9a9a95; line-height: normal; }
+.t15 { font-size: 15px; color: #0a0a0a; line-height: normal; }
+.t13m { font-weight: 500; font-size: 13px; color: #0a0a0a; line-height: normal; }
+.node { height: 40px; width: 85px; border-radius: 20px; background: #f9f8f5; border: 1px solid #d6d6d1; top: 182px; }
+.node span { position: absolute; top: 11px; font-weight: 500; font-size: 13px; color: #0a0a0a; line-height: normal; }
+.img { position: absolute; display: block; max-width: none; }
+.pill { position: absolute; height: 22px; border-radius: 11px; }
+.pillText { position: absolute; font-weight: 500; font-size: 12px; line-height: normal; white-space: nowrap; }
+.chip { position: absolute; background: #f2f1ec; border-radius: 15px; }
+.track { left: 204px; height: 6px; border-radius: 3px; background: #d6d6d1; }
+.fill { left: 204px; height: 6px; border-radius: 3px; background: #0a0a0a; }
+.pct { font-size: 12px; line-height: normal; }

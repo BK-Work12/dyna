@@ -1,0 +1,94 @@
+/* Figma "Cookie Consent — Compact (Desktop)". Easing = Figma's custom bezier (0.22, 1, 0.36, 1); dismiss uses (0.65, 0, 0.35, 1). */
+.root {
+  --e: cubic-bezier(0.22, 1, 0.36, 1);
+  --e2: cubic-bezier(0.65, 0, 0.35, 1);
+  --ink: #0a0a0a;
+  --card: #131313;
+  --line: #3a3a38;
+  --paper: #f5f5f2;
+  --muted: #a3a3a3;
+  --orange: #ff6b1e;
+  position: fixed; right: 24px; bottom: 24px; width: 420px; max-width: calc(100vw - 32px);
+  z-index: 9000; pointer-events: none;
+  font-family: var(--font-instrument), "Instrument Sans", system-ui, sans-serif;
+}
+
+/* ---------- card (banner <-> preferences) ---------- */
+.card {
+  position: absolute; right: 0; bottom: 0; width: 100%; height: 149px;
+  background: var(--card); border: 1px solid var(--line); border-radius: 5px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55); overflow: hidden; pointer-events: auto;
+  transform: translateX(520px); opacity: 1; visibility: hidden;
+  transition: transform 700ms var(--e), height 550ms var(--e), opacity 450ms var(--e), visibility 0s linear 700ms;
+}
+.root[data-state="default"] .card,
+.root[data-state="prefs"] .card { transform: none; visibility: visible; transition-delay: 0s; }
+.root[data-state="prefs"] .card { height: 478px; }
+.root[data-state="accepted"] .card { transform: translateY(8px); opacity: 0; height: 149px; transition: opacity 450ms var(--e), transform 450ms var(--e), visibility 0s linear 450ms; }
+.root[data-state="dismissed"] .card { transition-duration: 600ms; transition-timing-function: var(--e2); }
+
+.banner, .prefs { position: absolute; left: 0; top: 0; width: 100%; transition: opacity 400ms var(--e); }
+.banner { height: 149px; padding: 16px; display: flex; flex-direction: column; gap: 14px; opacity: 1; }
+.prefs { height: 478px; padding: 20px; display: flex; flex-direction: column; gap: 16px; opacity: 0; pointer-events: none; }
+.root[data-state="prefs"] .banner { opacity: 0; pointer-events: none; }
+.root[data-state="prefs"] .prefs { opacity: 1; pointer-events: auto; }
+
+.eyebrow { display: flex; align-items: center; justify-content: space-between; height: 13px; }
+.eyebrow span { font-family: var(--font-geist-mono), monospace; font-weight: 500; font-size: 10px; line-height: normal; letter-spacing: 1.2px; color: var(--muted); white-space: pre; }
+.mark { display: block; width: 7px; height: 7px; background: var(--orange); }
+.body { font-size: 13px; line-height: 19px; color: rgba(245, 245, 242, 0.88); }
+.actions { display: flex; align-items: flex-start; gap: 8px; }
+
+/* ---------- buttons (Cookie Button: Primary / Secondary / Text) ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 4px; font-weight: 500; font-size: 13px; line-height: 16px; white-space: nowrap; cursor: pointer;
+  transition: background-color 200ms var(--e), border-color 200ms var(--e), gap 200ms var(--e), color 200ms var(--e); }
+.primary { background: #f2f1ec; color: var(--ink); padding: 9px 14px; }
+.primary:hover, .primary:active { background: var(--orange); }
+.secondary { border: 1px solid var(--line); color: var(--paper); padding: 8px 14px; }
+.secondary:hover { background: rgba(255, 255, 255, 0.07); border-color: rgba(245, 245, 242, 0.9); }
+.text { color: var(--paper); padding: 9px 4px; gap: 6px; }
+.text .arrow { color: var(--muted); transition: color 200ms var(--e); }
+.text:hover { gap: 12px; }
+.text:hover .arrow { color: var(--orange); }
+.back { padding: 8px 4px; }
+.btn:focus-visible, .toggle:focus-visible, .reopen:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+
+/* ---------- preferences ---------- */
+.head { display: flex; flex-direction: column; gap: 6px; }
+.title { font-weight: 600; font-size: 20px; line-height: 24px; letter-spacing: -1px; color: var(--paper); }
+.intro { font-size: 13px; line-height: 19px; color: var(--muted); }
+.options { display: flex; flex-direction: column; }
+.option { display: flex; align-items: center; gap: 16px; padding: 11px 0; }
+.optText { flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.optHead { display: flex; align-items: center; gap: 10px; }
+.optHead b { font-weight: 500; font-size: 14px; line-height: 18px; color: var(--paper); }
+.always { font-family: var(--font-geist-mono), monospace; font-weight: 500; font-size: 10px; letter-spacing: 1.2px; color: var(--orange); }
+.optText p { font-size: 12px; line-height: 17px; color: var(--muted); }
+.foot { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+.spacer { flex: 1 0 0; }
+
+/* Cookie Toggle (compact size 37.4 x 20.4): Off / On / Locked, 0.25s */
+.toggle { position: relative; flex: none; width: 37.4px; height: 20.4px; border-radius: 10.2px; background: #333330; border: 0.85px solid var(--line); cursor: pointer;
+  transition: background-color 250ms var(--e), border-color 250ms var(--e); }
+.knob { position: absolute; left: 1.75px; top: 1.75px; width: 15.3px; height: 15.3px; border-radius: 50%; background: var(--muted); transition: transform 250ms var(--e), background-color 250ms var(--e); }
+.toggleOn { background: var(--orange); border-color: var(--orange); }
+.toggleOn .knob { transform: translateX(17px); background: var(--ink); }
+.toggleLocked { background: rgba(255, 107, 30, 0.4); border-color: transparent; cursor: default; }
+.toggleLocked .knob { transform: translateX(17px); background: rgba(245, 245, 242, 0.8); }
+
+/* ---------- saved confirmation + reopen chip ---------- */
+.saved { position: absolute; right: 0; bottom: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; pointer-events: none;
+  opacity: 0; transform: translateX(520px); visibility: hidden;
+  transition: transform 600ms var(--e2), opacity 400ms var(--e2), visibility 0s linear 600ms; }
+.root[data-state="accepted"] .saved { opacity: 1; transform: none; visibility: visible; pointer-events: auto; transition: transform 450ms var(--e), opacity 450ms var(--e), visibility 0s; }
+.toast { display: flex; align-items: center; gap: 10px; padding: 10px 18px; background: var(--card); border: 1px solid var(--line); border-radius: 4px; box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55); font-weight: 500; font-size: 13px; line-height: 16px; color: var(--paper); }
+.check { color: var(--orange); }
+.reopen { display: flex; align-items: center; gap: 8px; padding: 8px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 4px; cursor: pointer; transition: border-color 200ms var(--e); }
+.reopen:hover { border-color: rgba(245, 245, 242, 0.9); }
+.reopen span { font-family: var(--font-geist-mono), monospace; font-weight: 500; font-size: 10px; letter-spacing: 1.4px; color: var(--paper); line-height: 13px; }
+.dot { display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); }
+
+@media (max-width: 480px) { .root { right: 16px; bottom: 16px; } }
+@media (prefers-reduced-motion: reduce) {
+  .card, .saved, .banner, .prefs, .btn, .toggle, .knob { transition-duration: 1ms !important; transition-delay: 0s !important; }
+}

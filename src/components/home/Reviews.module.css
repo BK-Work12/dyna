@@ -1,0 +1,133 @@
+.section {
+  position: relative;
+  height: 1304px;
+  overflow: hidden;
+  background: var(--ink-950);
+}
+
+.heading {
+  position: absolute;
+  left: 267.5px;
+  top: 112px;
+  font-weight: 400;
+  font-size: 64px;
+  letter-spacing: -1.92px;
+  color: var(--paper-50);
+  white-space: nowrap;
+}
+
+.rating {
+  position: absolute;
+  left: 592.5px;
+  top: 200px;
+  font-size: 15px;
+  color: rgba(245, 245, 242, 0.6);
+  white-space: pre;
+}
+.stars { color: var(--accent-orange); }
+
+/* unrotated front-most-of-the-back card (Review 2) */
+.front {
+  position: absolute;
+  left: 528px;
+  top: 356.5px;
+  width: 384px;
+}
+
+/* rotated cards: wrapper box centres the card, inner div rotates it */
+.fanBox {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tilt { flex: none; transform: rotate(var(--r)); }
+
+/* Stacked ⇄ Spread: SMART_ANIMATE 0.8s GENTLE (Figma spring preset, approximated with a soft-overshoot bezier) */
+.front, .fanBox { transition: transform 800ms cubic-bezier(0.34, 1.2, 0.64, 1); }
+.tilt { transition: transform 800ms cubic-bezier(0.34, 1.2, 0.64, 1); }
+.spread .front, .spread .fanBox { transform: translate(var(--dx), var(--dy)); }
+.spread .tilt { transform: rotate(0deg); }
+
+/* invisible "Hover Area" rectangle (0,260 · 1440×1044) on top of the fan */
+.hoverArea { position: absolute; left: 0; top: 260px; width: 1440px; height: 1044px; z-index: 10; }
+
+.card {
+  width: 384px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 40px;
+  overflow: hidden;
+  border: 1px solid rgba(245, 245, 242, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.5);
+  background:
+    radial-gradient(ellipse 160px 31.25% at 326.4px 10%, rgba(158, 74, 31, 0.6) 0%, rgba(158, 74, 31, 0) 100%),
+    rgb(22, 20, 19);
+}
+
+.quote {
+  font-weight: 500;
+  font-size: 64px;
+  line-height: 40px;
+  color: rgba(254, 107, 30, 0.8);
+  white-space: nowrap;
+}
+.title {
+  width: 100%;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: normal;
+  color: var(--paper-50);
+}
+.body {
+  width: 100%;
+  font-size: 17px;
+  line-height: 1.5;
+  color: rgba(245, 245, 242, 0.72);
+}
+.rule {
+  width: 60px;
+  height: 1px;
+  background: rgba(245, 245, 242, 0.18);
+}
+.brand {
+  font-size: 20px;
+  line-height: normal;
+  color: rgba(245, 245, 242, 0.88);
+  white-space: nowrap;
+}
+.brandHarbor { font-family: var(--font-alexandria), sans-serif; font-weight: 600; }
+.brandMeridian { font-family: var(--font-michroma), sans-serif; font-weight: 400; }
+.brandSemi { font-weight: 600; }
+.brandMono { font-family: var(--font-geist-mono), monospace; font-weight: 500; }
+.brandLight { font-family: var(--font-alexandria), sans-serif; font-weight: 300; }
+
+.person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.avatar {
+  display: block;
+  width: 36px;
+  height: 36px;
+  flex: none;
+}
+.who {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  white-space: nowrap;
+}
+.name {
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--paper-50);
+}
+.role {
+  font-size: 13px;
+  color: rgba(245, 245, 242, 0.55);
+}

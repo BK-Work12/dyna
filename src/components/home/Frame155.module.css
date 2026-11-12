@@ -1,0 +1,41 @@
+.section { position: relative; padding: 86px 80px 85px; background: #0a0a0a; } /* Figma Frame 155: heading row at y=86, last row ends 85px above the bottom */
+.inner { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 126px; width: 1280px; max-width: 100%; margin-inline: auto; }
+
+.head { display: flex; align-items: center; justify-content: space-between; gap: 59px; width: 100%; }
+.title { font-weight: 400; font-size: 80px; line-height: 1; letter-spacing: -2px; color: #f5f5f2; white-space: nowrap; }
+.headText { display: flex; flex-direction: column; gap: 20px; width: 480px; flex: none; }
+.lead { font-size: 19px; line-height: 1.5; color: #9a9a95; }
+
+.link { position: relative; display: block; width: 125px; height: 23px; flex: none; }
+.link span { position: absolute; left: 0; top: 0; font-weight: 500; font-size: 15px; line-height: 1; color: #f5f5f2; white-space: nowrap; }
+.link img { position: absolute; left: 101px; top: 0; width: 16px; height: 16px; display: block; transition: transform 200ms cubic-bezier(0.2, 0, 0, 1); }
+.link i { position: absolute; left: 0; top: 20px; height: 1px; width: 0.01px; background: #fe6b1e; transition: width 200ms cubic-bezier(0.2, 0, 0, 1); }
+.link:hover i { width: 100%; }
+.link:hover img { transform: translateX(4px); }
+
+.rows { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 120px; width: 100%; overflow-x: clip; }
+.row { position: relative; width: 1280px; max-width: 100%; height: 400px; flex: none; }
+/* hidden until the entrance timeline starts (removed in DomainRow's reveal) */
+.row[data-pre] [data-m] { opacity: 0; }
+
+.visual { position: absolute; top: 0; width: 640px; height: 400px; background: #1c1c1c; border-radius: 20px; overflow: hidden; }
+.visualBordered { border: 1px solid rgba(245, 245, 242, 0.08); }
+.visualL { left: 0; }
+.visualR { left: 640px; }
+.layer { position: absolute; left: 0; top: 0; width: 640px; height: 400px; border-radius: 20px; }
+.visualBordered .layer { left: -1px; top: -1px; }
+.layer img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; pointer-events: none; border-radius: 20px; }
+.layerBg { border-radius: 0; }
+.layerBg img { border-radius: 0; }
+.layerRing { border: 1px solid #77776f; }
+
+.text { position: absolute; top: 59px; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.textL { left: 0; }
+.textR { left: 720px; }
+.dot { position: relative; width: 10px; height: 10px; flex: none; }
+.dot img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; display: block; }
+.name { font-weight: 500; font-size: 64px; line-height: 1; letter-spacing: -1.92px; color: #f5f5f2; white-space: nowrap; }
+.kind { font-weight: 400; font-size: 20px; line-height: normal; color: #9a9a95; white-space: nowrap; }
+.desc { width: 460px; font-size: 17px; line-height: 1.5; color: rgba(214, 214, 209, 0.85); }
+.stack { display: flex; align-items: flex-start; gap: 8px; }
+.tech { display: flex; align-items: flex-start; padding: 6px 12px; border: 1px solid rgba(245, 245, 242, 0.16); border-radius: 999px; font-size: 13px; line-height: normal; color: #d6d6d1; white-space: nowrap; }

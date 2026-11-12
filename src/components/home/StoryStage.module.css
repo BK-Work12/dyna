@@ -1,0 +1,43 @@
+/* Figma Smart Animate: 0.6s, EASE_IN_AND_OUT */
+.story {
+  --sa: 600ms cubic-bezier(0.42, 0, 0.58, 1);
+  position: absolute; left: calc(50% - 546px); top: 34px; width: 1092px; height: 572px; overflow: hidden;
+  transition: background-color var(--sa);
+}
+.layer { position: absolute; inset: 0; transition: opacity var(--sa); }
+.g { position: absolute; background: #deded9; }
+.full { position: absolute; left: 0; top: 0; width: 1092px; height: 572px; max-width: none; display: block; }
+.ital { position: absolute; font-style: italic; line-height: 1.5; white-space: nowrap; }
+
+/* sticky note <-> column header (same layer) */
+.node {
+  position: absolute; overflow: hidden; will-change: left, top, width, height, transform;
+  transition: left var(--sa), top var(--sa), width var(--sa), height var(--sa), transform var(--sa), background-color var(--sa);
+}
+.node > * { transition: opacity var(--sa); }
+.node p, .node span { position: absolute; white-space: nowrap; margin: 0; }
+.bizT { left: 18.2px; top: 18.2px; width: 184.6px; white-space: normal !important; font-style: italic; font-weight: 500; font-size: 22.1px; line-height: 1.5; letter-spacing: -0.221px; color: #0a0a0a; }
+.bizM { left: 18.2px; top: 119.6px; font-family: var(--font-geist-mono), monospace; font-size: 11.7px; line-height: 1.5; letter-spacing: 0.468px; color: #6e6e6a; }
+.headT { left: 15.6px; top: 13px; font-weight: 500; font-size: 19.5px; line-height: 1.5; letter-spacing: -0.0975px; color: #f5f5f2; }
+.headM { left: 15.6px; top: 41.6px; font-family: var(--font-geist-mono), monospace; font-size: 13px; line-height: 1.5; letter-spacing: 0.52px; color: rgba(245, 245, 242, 0.72); }
+.active { position: absolute; left: 0; top: 0; width: 100%; height: 2.6px; background: #fe6b1e; }
+
+/* UI chrome (visible in With DYNA) */
+.appbar { position: absolute; left: 0; top: 0; width: 1092px; height: 62.4px; background: #0a0a0a; }
+.line { position: absolute; left: 0; width: 1092px; height: 1.3px; background: #3a3a38; }
+.mono14 { position: absolute; font-family: var(--font-geist-mono), monospace; font-weight: 500; font-size: 14px; line-height: 1.5; letter-spacing: 1.4px; color: #f5f5f2; white-space: nowrap; }
+.jobs { position: absolute; left: 195px; top: 19.5px; font-size: 18px; line-height: 1.5; color: #9a9a95; white-space: pre; }
+.newjob { position: absolute; left: 949px; top: 19.5px; font-size: 17px; line-height: 1.5; color: #f5f5f2; white-space: nowrap; }
+.kpiL { position: absolute; top: 535.6px; font-family: var(--font-geist-mono), monospace; font-size: 12px; line-height: 1.5; letter-spacing: 0.48px; color: #6e6e6a; white-space: nowrap; }
+.kpiV { position: absolute; top: 531.7px; font-weight: 500; font-size: 18px; line-height: 1.5; color: #f5f5f2; white-space: nowrap; }
+
+/* job cards: component values (x1.3) */
+.job { position: absolute; width: 197.6px; height: 96.2px; background: #edece5; border: 1.3px solid #e3e2db; overflow: hidden; white-space: nowrap; line-height: 1.5; }
+.job span { position: absolute; left: 14.3px; }
+.jid { top: 11.7px; font-family: var(--font-geist-mono), monospace; font-size: 11.7px; letter-spacing: 0.468px; color: #6e6e6a; }
+.jname { top: 32.5px; font-weight: 500; font-size: 16.9px; color: #0a0a0a; }
+.jsub { top: 58.5px; font-size: 14.3px; color: #9a9a95; }
+.hot .jid { color: #fe6b1e; }
+
+.progress { position: absolute; right: 20px; top: 618px; width: 220px; height: 8px; }
+.progress i { position: absolute; left: 0; top: 3px; height: 1px; }

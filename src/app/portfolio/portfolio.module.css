@@ -1,0 +1,79 @@
+.main { padding-top: 64px; background: var(--ink-950); }
+
+/* elements animated in by PortfolioMotion start hidden (first keyframe opacity 0) */
+.main [data-m] { opacity: 0; }
+.main { --ease-card: cubic-bezier(0.22, 1, 0.36, 1); } /* Figma easing is CUSTOM_CUBIC_BEZIER (values not exposed) */
+.main :global(.footer__title), .main :global(.footer__sub), .main :global(.footer__cta) { opacity: 0; }
+@media (scripting: none) {
+  .main [data-m], .main :global(.footer__title), .main :global(.footer__sub), .main :global(.footer__cta) { opacity: 1; }
+}
+
+.hero {
+  position: relative; height: 463px; overflow: hidden;
+  background:
+    radial-gradient(ellipse 748.8px 347.25px at 50% 50%, rgba(254,107,30,0.1) 0%, rgba(254,107,30,0.035) 55%, rgba(254,107,30,0) 100%),
+    linear-gradient(180deg, rgba(21,21,21,0.7) 0%, rgba(21,21,21,0) 40%),
+    #090909;
+}
+.heroInner {
+  position: absolute; left: 50%; top: 117px; transform: translateX(-50%);
+  width: 940px; display: flex; flex-direction: column; align-items: center; gap: 33px;
+}
+.heroTitle {
+  display: grid; font-weight: 600; font-size: 62px; letter-spacing: -1.55px; line-height: 68px;
+  text-transform: capitalize; white-space: nowrap;
+}
+.heroTitle span { grid-area: 1 / 1; }
+.heroTitle .l1 { color: #fff; }
+.heroTitle .l2 { color: var(--accent-orange); margin-left: 100.75px; margin-top: 68px; }
+.heroLead { width: 1030px; flex-shrink: 0; font-size: 20px; line-height: 30px; color: #a3a3a3; text-align: center; }
+
+.list { width: 1280px; margin-inline: auto; display: flex; flex-direction: column; gap: 35px; padding-bottom: 85px; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 44px; row-gap: 38px; }
+
+.card { display: flex; flex-direction: column; gap: 35px; cursor: pointer; }
+.cardSm { gap: 20px; }
+
+.media { position: relative; width: 100%; height: 418px; background: #151515; border-radius: 10px; }
+.mediaLg { height: 645px; border-radius: 20px; }
+.shot, .sheen { position: absolute; inset: 0; border-radius: 24px; }
+/* hover = Figma variant "State=Hover": Shot scale 1.02 + lift 8px + drop shadow 48; sheen and chip fade in. 0.35s */
+.shot { transition: transform 350ms var(--ease-card), box-shadow 350ms var(--ease-card); }
+.media:hover .shot { transform: translateY(-8px) scale(1.02); box-shadow: 0 24px 48px rgba(0,0,0,0.5); }
+.shot img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; border-radius: 24px; pointer-events: none; }
+.sheen {
+  border: 1px solid rgba(255,255,255,0.55); opacity: 0; pointer-events: none;
+  background-image: linear-gradient(145.93deg, rgba(255,255,255,0.4) 14.286%, rgba(255,255,255,0.08) 42.857%, rgba(255,255,255,0) 85.714%);
+  transition: opacity 350ms var(--ease-card);
+}
+.mediaLg .sheen { background-image: linear-gradient(153.26deg, rgba(255,255,255,0.4) 14.286%, rgba(255,255,255,0.08) 42.857%, rgba(255,255,255,0) 85.714%); }
+.chip {
+  position: absolute; left: 50%; top: calc(50% + 20px); transform: translate(-50%, -50%);
+  display: flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; overflow: hidden;
+  background: rgba(13,13,13,0.38); border: 1px solid rgba(255,255,255,0.4);
+  backdrop-filter: blur(12px); box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  font-weight: 500; font-size: 16px; color: #fff; white-space: nowrap;
+  opacity: 0; pointer-events: none; transition: opacity 350ms var(--ease-card);
+}
+.mediaLg .chip { top: calc(50% + 20.5px); }
+.chip img { width: 16px; height: 16px; display: block; }
+.media:hover .sheen, .media:hover .chip { opacity: 1; }
+
+.textRow { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.text { display: flex; flex-direction: column; width: 100%; }
+.textRow .text { width: 618px; }
+.title { font-weight: 500; font-size: 36px; line-height: 44px; letter-spacing: -0.432px; color: #fff; }
+.desc { font-size: 18px; line-height: 28px; color: #989898; }
+.more { display: flex; align-items: center; gap: 6px; font-weight: 500; font-size: 15px; line-height: 22px; color: var(--accent-orange); white-space: nowrap; }
+.more img { width: 16px; height: 16px; display: block; }
+.stack { display: flex; flex-direction: column; gap: 20px; width: 100%; }
+
+/* ---------- Card tilt (from the "holo card" CodePen): pointer-driven 3D tilt only ---------- */
+.media {
+  transform-style: preserve-3d;
+  transform: perspective(1100px) rotateY(calc(-9deg * var(--ratio-x))) rotateX(calc(9deg * var(--ratio-y)));
+  transition: transform 220ms linear;
+}
+/* the "View project" chip floats above the card and drifts against the tilt (like the CSS logo in the pen) */
+.chip { transform: translate(-50%, -50%) translate(calc(var(--ratio-x) * -10px), calc(var(--ratio-y) * -10px)) translateZ(40px); transition: opacity 200ms linear, transform 220ms linear; }
+@media (prefers-reduced-motion: reduce) { .media { transform: none; } }

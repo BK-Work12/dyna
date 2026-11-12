@@ -1,0 +1,13 @@
+/* pinned scroll: 100vh stage held for an extra ~110vh of scrolling while the lines reveal */
+.section { position: relative; height: calc(100vh + 110vh); background: #f2f1ec; }
+.stage { position: sticky; top: 0; height: 100vh; min-height: 668px; overflow: hidden; background: #f2f1ec; }
+.lines { position: absolute; left: 220px; top: 50%; width: 1000px; height: 300px; transform: translateY(-50%); text-align: center; }
+.lines p { position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+.eyebrow { top: 0; font-family: var(--font-geist-mono), monospace; font-weight: 500; font-size: 12px; letter-spacing: 0.8px; color: #fe6b1e; }
+.l1, .l2 { font-size: 72px; line-height: 76px; letter-spacing: -2.16px; color: #050505; }
+.l1 { top: 40px; }
+.l2 { top: 116px; }
+.o { color: #fe6b1e; }
+/* hidden until the text-stagger starts (Figma opacity 0 -> 1); removed by script */
+.lines p.pre { opacity: 0; }
+.sub { top: 228px; width: 780px; white-space: normal !important; font-size: 24px; line-height: 36px; color: #0a0a0a; }

@@ -1,0 +1,41 @@
+.section { height: 1694px; }
+
+.card {
+  position: absolute; left: 240px; top: 60px; width: 960px;
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  padding: 52px 56px; display: flex; flex-direction: column; gap: 28px;
+}
+
+.step { display: flex; flex-direction: column; gap: 20px; }
+.stepTight { display: flex; flex-direction: column; gap: 16px; }
+.header { display: flex; flex-direction: column; gap: 8px; }
+.eyebrow { font-weight: 500; font-size: 12px; letter-spacing: 1.68px; color: var(--accent-orange); }
+.title { font-weight: 500; font-size: 32px; letter-spacing: -0.64px; color: var(--ink-950); }
+.lead { font-size: 16px; line-height: 24px; color: var(--body-grey); }
+
+.rule { height: 1px; width: 100%; background: var(--line); }
+
+/* field height overrides (shared .field defaults are 52 / 132) */
+.tall input, .tall textarea { height: 120px; }
+.short textarea { height: 110px; }
+.row { display: flex; gap: 20px; }
+
+.option {
+  display: flex; align-items: center; gap: 16px; width: 100%; text-align: left;
+  background: var(--field); border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px;
+  transition: border-color 200ms var(--ease-dyna);
+}
+.option:hover, .option[aria-checked="true"] { border-color: var(--accent-orange); }
+.radio { position: relative; width: 20px; height: 20px; flex: none; }
+.radio img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; display: block; }
+.radio::after {
+  content: ""; position: absolute; left: 5px; top: 5px; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--accent-orange); opacity: 0; transition: opacity 200ms var(--ease-dyna);
+}
+.option[aria-checked="true"] .radio::after { opacity: 1; }
+.optionText { display: flex; flex-direction: column; gap: 4px; flex: 1 0 0; min-width: 1px; }
+.optionTitle { font-weight: 500; font-size: 16px; color: var(--ink-950); }
+.optionDesc { font-size: 14px; line-height: 20px; color: var(--body-grey); }
+
+.size { display: flex; flex-direction: column; gap: 10px; }
+.sizeLabel { font-weight: 500; font-size: 12px; letter-spacing: 1.2px; color: var(--body-grey); }

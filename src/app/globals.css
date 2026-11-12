@@ -1,0 +1,222 @@
+:root {
+  --accent-orange: #fe6b1e;
+  --accent-orange-press: #ed651a;
+  --ink-950: #0a0a0a;
+  --grey-700: #3a3a38;
+  --grey-500: #6e6e6a;
+  --grey-400: #9a9a95;
+  --paper-50: #f5f5f2;
+  --paper-50-a85: rgba(245, 245, 242, 0.85);
+  --paper-bg: #f2f1ec;
+  --card: #fbfaf7;
+  --field: #f4f2ec;
+  --line: #d9d7cf;
+  --body-grey: #4a4a46;
+  --placeholder: #8a8a85;
+  --ease-dyna: cubic-bezier(0.2, 0, 0, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--ink-950); }
+/* no horizontal scroll ever (clip, not hidden: keeps position: sticky working) and no visible scrollbars */
+html, body { overflow-x: clip; }
+html { scrollbar-width: none; -ms-overflow-style: none; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; width: 0; height: 0; }
+body {
+  font-family: var(--font-instrument), "Instrument Sans", system-ui, sans-serif;
+  font-variation-settings: "wdth" 100;
+  color: var(--ink-950);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; }
+
+/* page frame: 1440px design width, centred */
+.frame { width: 100%; max-width: 1440px; margin-inline: auto; position: relative; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  background: var(--accent-orange); color: var(--ink-950);
+  font-weight: 500; font-size: 15px; line-height: 20px; white-space: nowrap;
+  border-radius: 6px; padding: 16px 26px; cursor: pointer;
+  /* Figma Button Hover: fill #ff8240, Smart Animate 200ms EASE_OUT; Press: darker */
+  transition: background-color 200ms cubic-bezier(0, 0, 0.58, 1);
+}
+.btn:hover { background: #ff8240; }
+.btn:active { background: var(--accent-orange-press); }
+.btn--sm { padding: 10px 18px; }
+
+.btn-primary {
+  position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 18px;
+  background: var(--accent-orange); padding: 18px 22px 18px 24px; cursor: pointer;
+}
+.btn-primary__sweep {
+  position: absolute; left: 0; top: 0; height: 100%; width: 1px;
+  background: var(--accent-orange-press);
+  /* Figma Footer CTA hover: Smart Animate 200ms cubic-bezier(.65,0,.35,1) */
+  transition: width 200ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+.btn-primary:hover .btn-primary__sweep, .btn-primary:active .btn-primary__sweep { width: 100%; }
+.btn-primary__label {
+  position: relative; font-weight: 500; font-size: 15px; line-height: 1;
+  color: var(--ink-950); white-space: nowrap;
+}
+.btn-primary__slot { position: relative; width: 20px; height: 16px; }
+.btn-primary__arrow {
+  position: absolute; left: 0; top: 0; width: 16px; height: 16px; display: block;
+  transition: transform 200ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+.btn-primary:hover .btn-primary__arrow { transform: translateX(4px); }
+
+/* ---------- Navbar ---------- */
+.navbar {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 20; height: 72px;
+  background: transparent; border-bottom: 1px solid rgba(255, 255, 255, 0);
+  display: flex; align-items: center; justify-content: space-between; padding: 0 80px;
+}
+.navbar__logo { position: relative; display: block; width: 120px; height: 31.095px; overflow: hidden; }
+.navbar__logo img { position: absolute; top: 0; left: 0; width: 98.41%; height: 100%; max-width: none; display: block; }
+.navbar__links { display: flex; gap: 40px; font-weight: 500; font-size: 15px; line-height: 20px; color: #d4d4d4; }
+.navbar__links a { transition: color 200ms var(--ease-dyna); }
+.navbar__links a:hover, .navbar__links a[aria-current="page"] { color: #fff; }
+
+/* ---------- Footer ---------- */
+.footer { position: relative; height: 980px; overflow: hidden; background: var(--ink-950); margin-top: 20px; }
+.footer__logo { position: absolute; left: 380px; top: 560px; width: 1280px; height: 331.68px; opacity: 0.8; overflow: hidden; transition: transform 400ms cubic-bezier(0, 0, 0.58, 1); }
+.footer__logo.is-revealed { transform: translateX(-300px); }
+.footer__logo img { position: absolute; top: 0; left: 0; width: 98.41%; height: 100%; max-width: none; display: block; }
+.footer__rule { position: absolute; left: 80px; width: 1280px; height: 1px; background: var(--grey-700); }
+.footer__title { position: absolute; left: 80px; top: 96px; font-weight: 500; font-size: 40px; line-height: 46px; letter-spacing: -0.48px; color: var(--paper-50); white-space: nowrap; }
+.footer__sub { position: absolute; left: 80px; top: 160px; width: 420px; font-size: 16px; line-height: 24px; color: var(--grey-400); }
+.footer__cta { position: absolute; left: 1157px; top: 108px; }
+.footer__col { position: absolute; top: 300px; display: flex; flex-direction: column; gap: 6px; }
+.footer__col h4 { font-weight: 500; font-size: 15px; line-height: 22px; color: var(--paper-50); margin-bottom: 2px; }
+.footer__col a, .footer__col p { font-size: 16px; line-height: 24px; color: var(--paper-50-a85); white-space: nowrap; }
+.footer__col a:hover { color: var(--paper-50); }
+.footer__email { position: absolute; left: 1000px; top: 328px; width: 360px; height: 52px; border: 1px solid var(--grey-700); display: flex; align-items: center; justify-content: space-between; padding: 0 16px 0 15px; background: transparent; }
+.footer__email input { background: none; border: 0; outline: 0; font-size: 15px; line-height: 22px; width: 280px; color: var(--paper-50); }
+.footer__email input::placeholder { color: var(--grey-500); opacity: 1; }
+.footer__email button { font-size: 18px; line-height: 28px; color: var(--accent-orange); }
+.footer__legal { position: absolute; left: 0; top: 920px; width: 100%; height: 60px; background: var(--ink-950); }
+.footer__legal .footer__rule { top: 0; }
+.footer__legal span, .footer__legal a { position: absolute; top: 22px; font-size: 14px; line-height: 20px; color: rgba(245, 245, 242, 0.85); white-space: pre; }
+
+/* ---------- Contact page ---------- */
+.contact-hero {
+  position: relative; height: 621px; margin-top: 72px; display: flex; align-items: center; justify-content: center;
+  background:
+    radial-gradient(ellipse 748.8px 465.75px at 50% 50%, rgba(254,107,30,0.1) 0%, rgba(254,107,30,0.035) 55%, rgba(254,107,30,0) 100%),
+    linear-gradient(180deg, rgba(21,21,21,0.7) 0%, rgba(21,21,21,0) 40%),
+    #090909;
+}
+.contact-hero__inner { display: flex; flex-direction: column; align-items: center; gap: 33px; width: 985px; max-width: 100%; }
+.contact-hero h1 { font-weight: 600; font-size: 62px; line-height: 68px; letter-spacing: -1.55px; color: #fff; text-transform: capitalize; white-space: nowrap; }
+.contact-hero h1 em { font-style: normal; color: var(--accent-orange); }
+.contact-hero p { width: 1030px; max-width: 100vw; font-size: 20px; line-height: 30px; color: #a3a3a3; text-align: center; }
+
+.contact-form-section { position: relative; height: 980px; background: var(--paper-bg); overflow: hidden; }
+.contact-card {
+  position: absolute; left: 280px; top: 60px; width: 880px; background: var(--card);
+  border: 1px solid var(--line); border-radius: 14px; padding: 44px 48px;
+  display: flex; flex-direction: column; gap: 26px;
+}
+.contact-card__head { display: flex; flex-direction: column; gap: 10px; }
+.contact-card__eyebrow { font-weight: 500; font-size: 12px; letter-spacing: 1.68px; color: var(--accent-orange); }
+.contact-card__title { font-weight: 500; font-size: 38px; letter-spacing: -0.76px; color: var(--ink-950); }
+.contact-card__lead { font-size: 16px; line-height: 24px; color: var(--body-grey); }
+.contact-row { display: flex; gap: 24px; }
+.field { display: flex; flex-direction: column; gap: 8px; flex: 1 0 0; min-width: 1px; }
+.field label, .contact-card__label { font-weight: 500; font-size: 14px; color: var(--ink-950); }
+.field input, .field textarea {
+  width: 100%; background: var(--field); border: 1px solid var(--line); border-radius: 6px;
+  padding: 0 16px; height: 52px; font-size: 15px; color: var(--ink-950); outline: 0;
+  transition: border-color 200ms var(--ease-dyna);
+}
+.field textarea { height: 132px; padding-top: 16px; resize: none; line-height: normal; }
+.field input::placeholder, .field textarea::placeholder { color: var(--placeholder); opacity: 1; }
+.field input:focus, .field textarea:focus { border-color: var(--accent-orange); }
+.chips { display: flex; gap: 10px; }
+.chip {
+  background: var(--field); border: 1px solid var(--line); border-radius: 999px; padding: 11px 18px;
+  font-weight: 500; font-size: 14px; color: var(--ink-950); transition: background 200ms var(--ease-dyna), border-color 200ms var(--ease-dyna);
+}
+.chip[aria-pressed="true"] { background: var(--accent-orange); border-color: var(--accent-orange); }
+.contact-card__note { font-size: 13px; line-height: 20px; color: var(--body-grey); }
+.submit {
+  display: flex; align-items: center; justify-content: center; gap: 12px; height: 56px; width: 100%;
+  background: var(--accent-orange); border-radius: 6px; font-weight: 500; font-size: 16px; color: var(--ink-950);
+  transition: background 200ms var(--ease-dyna);
+}
+.submit:hover, .submit:active { background: var(--accent-orange-press); }
+
+.scrim { position: absolute; inset: 0; background: var(--ink-950); opacity: 0; pointer-events: none; }
+.popup {
+  position: absolute; left: 460px; top: 260px; width: 520px; background: var(--card); border-radius: 16px;
+  box-shadow: 0 24px 60px -12px rgba(0,0,0,0.25); padding: 44px 48px;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  opacity: 0; pointer-events: none; transform: translateY(40px);
+}
+.popup__badge { width: 56px; height: 56px; border-radius: 28px; background: var(--accent-orange); position: relative; }
+.popup__badge img { position: absolute; left: 16px; top: 16px; width: 24px; height: 24px; }
+.popup h2 { font-weight: 500; font-size: 40px; letter-spacing: -0.8px; color: var(--ink-950); }
+.popup p { font-size: 17px; line-height: 26px; color: var(--body-grey); text-align: center; }
+.popup__close { background: var(--ink-950); border-radius: 6px; padding: 14px 32px; font-weight: 500; font-size: 16px; color: var(--paper-50); }
+
+/* ---------- Form submit flow (Contact + Discuss) ----------
+   Figma set "… Form — Submit Flow": Form → Sending → Closing → ThankYou
+   Closing: Paper Top/Bottom collapse to a 1px line at the midline + Paper opacity 0 (0.8s EASE_IN_AND_OUT)
+   ThankYou: Scrim opacity .55, Popup opacity 1 and y 260 → 220 (0.5s cubic-bezier(.22,1,.36,1)). */
+.flow > form { clip-path: inset(0 0 0 0); opacity: 1; }
+.flow[data-phase="closing"] > form,
+.flow[data-phase="thanks"] > form { clip-path: inset(calc(50% - 1px) 0 calc(50% - 1px) 0); opacity: 0; pointer-events: none; }
+.flow[data-phase="closing"] > form { transition: clip-path 800ms cubic-bezier(0.42, 0, 0.58, 1), opacity 800ms cubic-bezier(0.42, 0, 0.58, 1); }
+.flow[data-phase="thanks"] > form { transition: clip-path 500ms cubic-bezier(0.22, 1, 0.36, 1), opacity 500ms cubic-bezier(0.22, 1, 0.36, 1); }
+.flow[data-phase="thanks"] .scrim { opacity: 0.55; pointer-events: auto; transition: opacity 500ms cubic-bezier(0.22, 1, 0.36, 1); }
+.flow[data-phase="thanks"] .popup { opacity: 1; transform: translateY(0); pointer-events: auto; transition: opacity 500ms cubic-bezier(0.22, 1, 0.36, 1), transform 500ms cubic-bezier(0.22, 1, 0.36, 1); }
+.flow[data-phase="form"] > form { transition: clip-path 250ms cubic-bezier(0.22, 1, 0.36, 1), opacity 250ms cubic-bezier(0.22, 1, 0.36, 1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .footer__logo, .btn, .btn-primary__sweep, .btn-primary__arrow, .flow > form, .flow .scrim, .flow .popup { transition-duration: 0.01ms !important; }
+}
+
+/* ---------- Custom cursor (fine pointers only; see components/Cursor.tsx) ---------- */
+html.has-cursor, html.has-cursor *:not(input):not(textarea):not(select) { cursor: none !important; }
+.btn, .btn-primary { transition-property: background, translate; }
+.cursor { position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0; transition: opacity 200ms var(--ease-dyna); }
+.cursor[data-visible="1"] { opacity: 1; }
+.cursor[data-state="field"] { opacity: 0 !important; }
+.cursor__dot, .cursor__ring { position: fixed; left: 0; top: 0; will-change: transform; }
+.cursor__dot::before {
+  content: ""; display: block; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%;
+  background: var(--accent-orange); transition: transform 200ms var(--ease-dyna), opacity 200ms var(--ease-dyna);
+}
+.cursor__ring::before {
+  content: ""; position: absolute; left: 0; top: 0; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%;
+  border: 1.5px solid var(--accent-orange); background: rgba(254, 107, 30, 0);
+  transition: width 250ms var(--ease-dyna), height 250ms var(--ease-dyna), margin 250ms var(--ease-dyna),
+    background 250ms var(--ease-dyna), border-color 250ms var(--ease-dyna), transform 150ms var(--ease-dyna);
+}
+.cursor__label {
+  position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); font-weight: 500; font-size: 14px;
+  letter-spacing: 0.2px; color: var(--ink-950); opacity: 0; transition: opacity 200ms var(--ease-dyna);
+}
+.cursor[data-state="link"] .cursor__ring::before { width: 72px; height: 72px; margin: -36px 0 0 -36px; background: rgba(254, 107, 30, 0.14); }
+.cursor[data-state="link"] .cursor__dot::before { transform: scale(0.5); }
+.cursor[data-state="view"] .cursor__ring::before { width: 96px; height: 96px; margin: -48px 0 0 -48px; background: var(--accent-orange); }
+.cursor[data-state="view"] .cursor__label { opacity: 1; }
+.cursor[data-state="view"] .cursor__dot::before { opacity: 0; }
+.cursor[data-down="1"] .cursor__ring::before { transform: scale(0.85); }
+@media (prefers-reduced-motion: reduce) { .cursor__ring::before, .cursor__dot::before { transition: none; } }
+
+/* ---------- Holographic tilt cards (portfolio images) ---------- */
+@property --ratio-x { syntax: "<number>"; inherits: true; initial-value: 0; }
+@property --ratio-y { syntax: "<number>"; inherits: true; initial-value: 0; }
+@property --correction { syntax: "<percentage>"; inherits: true; initial-value: 0%; }
+
+/* ---------- Intro splash (Figma "Intro Splash — Home"; see components/IntroSplash.tsx) ---------- */
+.intro { position: fixed; left: 0; top: 0; width: 100%; height: 100vh; background: #0a0a0a; z-index: 10001; }
+.intro__logo { position: fixed; left: 50%; top: 50vh; width: 105.6px; height: 27.36px; margin: -13.68px 0 0 -52.8px; transform-origin: 0 0; overflow: hidden; }
+.intro__logo img { position: absolute; left: 0; top: 0; width: 98.41%; height: 100%; max-width: none; display: block; }
+@media (scripting: none) { .intro { display: none; } }
